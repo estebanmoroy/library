@@ -19,12 +19,10 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
-let book = new Book("1", "example", "example", "456", true);
-let book2 = new Book("2", "example2", "example2", "4569", false);
-addBookToLibrary(book);
-addBookToLibrary(book2);
-
 function render() {
+  while ($(".book-list").firstChild) {
+    $(".book-list").removeChild($(".book-list").firstChild);
+  }
   myLibrary.forEach(book => {
     let row = document.createElement("tr");
     row.appendChild(createCell("id", book.id));
@@ -32,18 +30,24 @@ function render() {
     row.appendChild(createCell("author", book.author));
     row.appendChild(createCell("pages", book.pages));
     row.appendChild(createCell("completed", book.isCompleted));
-    let deleteButton = document.createElement("td");
-    deleteButton.textContent = "X";
-    row.appendChild(deleteButton);
-    $("tbody").appendChild(row);
+    row.appendChild(createCell("delete", book.id));
+    $(".book-list").insertBefore(row, $(".book-list").firstChild);
   });
 }
 
 function createCell(attributeName, value) {
   let cell = document.createElement("td");
-  cell.classList.add(attributeName);
-  cell.contentEditable = "true";
-  cell.textContent = value;
+  if (attributeName === "delete") {
+    button = document.createElement("button");
+    button.classList.add("delete-book");
+    button.setAttribute("data-id", value);
+    button.textContent = "X";
+    cell.appendChild(button);
+  } else {
+    cell.classList.add(attributeName);
+    cell.contentEditable = "true";
+    cell.textContent = value;
+  }
   return cell;
 }
 
@@ -59,3 +63,27 @@ function newBookButtonHandler() {
     : $(".add-new").setAttribute("hidden", true);
 }
 $("#add-new-book-button").addEventListener("click", newBookButtonHandler);
+
+function persistBookButtonHandler() {
+  let id = $("input[name='id']").value;
+  let title = $("input[name='title']").value;
+  let author = $("input[name='author']").value;
+  let pages = $("input[name='pages']").value;
+  let isCompleted = $("input[name='isCompleted']").checked;
+  let book = new Book(id, title, author, pages, isCompleted);
+  addBookToLibrary(book);
+  render();
+  $("input[name='id']").value = "";
+  $("input[name='title']").value = "";
+  $("input[name='author']").value = "";
+  $("input[name='pages']").value = "";
+  $("input[name='isCompleted']").checked = false;
+}
+$("#persist-new-book").addEventListener("click", persistBookButtonHandler);
+
+let book = new Book("1", "example", "example", "456", true);
+let book2 = new Book("2", "example2", "example2", "4569", false);
+addBookToLibrary(book);
+addBookToLibrary(book2);
+
+render();

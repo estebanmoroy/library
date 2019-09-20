@@ -20,24 +20,24 @@
       <tbody class="add-new">
         <tr>
           <td>
-            <input type="text" />
+            <input type="number" name="id" />
           </td>
           <td>
-            <input type="text" />
+            <input type="text" name="title" />
           </td>
           <td>
-            <input type="text" />
+            <input type="text" name="author" />
           </td>
           <td>
-            <input type="text" />
+            <input type="number" name="pages" />
           </td>
           <td>
-            <input type="checkbox" />
+            <input type="checkbox" name="isCompleted" value="true" />
           </td>
-          <td><button>+</button></td>
+          <td><button id="persist-new-book">+</button></td>
         </tr>
       </tbody>
-      <tbody>
+      <tbody class="book-list">
         <tr>
           <td class="id" contenteditable="true">1</td>
           <td class="title" contenteditable="true">Foo</td>
@@ -46,7 +46,7 @@
           <td class="completed" contenteditable="true"
             >Add toggle on hover later</td
           >
-          <td>X</td>
+          <td><button class="delete-book">X</button></td>
         </tr>
       </tbody>
     </table>
