@@ -17,11 +17,9 @@
         <th>Pages</th>
         <th>Completed</th>
       </thead>
-      <tbody class="add-new">
+      <tbody class="add-new" hidden>
         <tr>
-          <td>
-            <input type="number" name="id" />
-          </td>
+          <td class="new-id"></td>
           <td>
             <input type="text" name="title" />
           </td>
@@ -39,7 +37,7 @@
       </tbody>
       <tbody class="book-list">
         <tr>
-          <td class="id" contenteditable="true">1</td>
+          <td class="id">1</td>
           <td class="title" contenteditable="true">Foo</td>
           <td class="author" contenteditable="true">Bar</td>
           <td class="pages" contenteditable="true">123</td>

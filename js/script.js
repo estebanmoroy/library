@@ -61,11 +61,12 @@ function newBookButtonHandler() {
   atributesArray.includes("hidden")
     ? $(".add-new").removeAttribute("hidden")
     : $(".add-new").setAttribute("hidden", true);
+  $(".new-id").textContent = idCounter;
 }
 $("#add-new-book-button").addEventListener("click", newBookButtonHandler);
 
 function persistBookButtonHandler() {
-  let id = $("input[name='id']").value;
+  let id = $(".new-id").textContent;
   let title = $("input[name='title']").value;
   let author = $("input[name='author']").value;
   let pages = $("input[name='pages']").value;
@@ -73,13 +74,18 @@ function persistBookButtonHandler() {
   let book = new Book(id, title, author, pages, isCompleted);
   addBookToLibrary(book);
   render();
-  $("input[name='id']").value = "";
+  idCounter++;
+  $(".new-id").textContent = idCounter;
   $("input[name='title']").value = "";
   $("input[name='author']").value = "";
   $("input[name='pages']").value = "";
   $("input[name='isCompleted']").checked = false;
 }
 $("#persist-new-book").addEventListener("click", persistBookButtonHandler);
+
+function deleteBookButtonHandler() {}
+
+let idCounter = 3;
 
 let book = new Book("1", "example", "example", "456", true);
 let book2 = new Book("2", "example2", "example2", "4569", false);
