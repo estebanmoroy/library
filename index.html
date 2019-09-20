@@ -11,11 +11,11 @@
     <button id="add-new-book-button">Add New</button>
     <table>
       <thead>
-        <th>ID</th>
+        <th>#</th>
         <th>Title</th>
         <th>Author</th>
         <th>Pages</th>
-        <th>Completed</th>
+        <th>Completed?</th>
       </thead>
       <tbody class="add-new" hidden>
         <tr>
@@ -41,9 +41,12 @@
           <td class="title" contenteditable="true">Foo</td>
           <td class="author" contenteditable="true">Bar</td>
           <td class="pages" contenteditable="true">123</td>
-          <td class="completed" contenteditable="true"
-            >Add toggle on hover later</td
-          >
+          <td class="completed">
+            <label class="switch">
+              <input type="checkbox" class="toggle" />
+              <span class="slider"></span>
+            </label>
+          </td>
           <td><button class="delete-book">X</button></td>
         </tr>
       </tbody>

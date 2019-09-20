@@ -85,6 +85,19 @@ function createCell(attributeName, value) {
       render();
     });
     cell.appendChild(button);
+  } else if (attributeName === "completed") {
+    label = document.createElement("label");
+    label.classList.add("switch");
+    checkbox = document.createElement("input");
+    checkbox.classList.add("toggle");
+    checkbox.setAttribute("type", "checkbox");
+    value ? (checkbox.checked = true) : (checkbox.checked = false);
+    label.appendChild(checkbox);
+    let span = document.createElement("span");
+    span.classList.add("slider");
+    label.appendChild(span);
+    cell.classList.add(attributeName);
+    cell.appendChild(label);
   } else {
     cell.classList.add(attributeName);
     cell.contentEditable = "true";
