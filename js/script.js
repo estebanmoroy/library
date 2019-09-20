@@ -3,10 +3,9 @@ const $$ = document.querySelectorAll.bind(document);
 
 let myLibrary = [];
 let idCounter = 3;
-let book = new Book("1", "example", "example", "456", true);
-let book2 = new Book("2", "example2", "example2", "4569", false);
-addBookToLibrary(book);
-addBookToLibrary(book2);
+let b1 = new Book("1", "The Way of Kings", "Brandon Sanderson", "1007", true);
+let b2 = new Book("2", "Words of Radiance", "Brandon Sanderson", "1087", false);
+addBookToLibrary(b1, b2);
 render();
 
 function Book(id, title, author, pages, isCompleted) {
@@ -21,8 +20,8 @@ Book.prototype.info = function() {
   return `${title}, ${author}, ${haveReadString}`;
 };
 
-function addBookToLibrary(book) {
-  myLibrary.push(book);
+function addBookToLibrary() {
+  myLibrary.push(...arguments);
 }
 
 function newBookButtonHandler() {
@@ -36,6 +35,7 @@ function newBookButtonHandler() {
     ? $(".add-new").removeAttribute("hidden")
     : $(".add-new").setAttribute("hidden", true);
   $(".new-id").textContent = idCounter;
+  $("input[name='title']").focus();
 }
 $("#add-new-book-button").addEventListener("click", newBookButtonHandler);
 
