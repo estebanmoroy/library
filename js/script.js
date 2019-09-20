@@ -1,5 +1,8 @@
 let myLibrary = [];
 
+const $ = document.querySelector.bind(document);
+const $$ = Array.from(document.querySelectorAll.bind(document));
+
 function Book(id, title, author, pages, isCompleted) {
   this.id = id;
   this.title = title;
@@ -15,8 +18,11 @@ Book.prototype.info = function() {
 function addBookToLibrary(book) {
   myLibrary.push(book);
 }
+
 let book = new Book("1", "example", "example", "456", true);
+let book2 = new Book("2", "example2", "example2", "4569", false);
 addBookToLibrary(book);
+addBookToLibrary(book2);
 
 function render() {
   myLibrary.forEach(book => {
@@ -26,8 +32,10 @@ function render() {
     row.appendChild(createCell("author", book.author));
     row.appendChild(createCell("pages", book.pages));
     row.appendChild(createCell("completed", book.isCompleted));
-
-    document.querySelector("tbody").appendChild(row);
+    let deleteButton = document.createElement("td");
+    deleteButton.textContent = "X";
+    row.appendChild(deleteButton);
+    $("tbody").appendChild(row);
   });
 }
 
@@ -38,3 +46,16 @@ function createCell(attributeName, value) {
   cell.textContent = value;
   return cell;
 }
+
+function newBookButtonHandler() {
+  let atributesNodeList = $(".add-new").attributes;
+  let atributesArray = [];
+  for (let i = 0; i < atributesNodeList.length; i++) {
+    const element = atributesNodeList[i];
+    atributesArray.push(element.nodeName);
+  }
+  atributesArray.includes("hidden")
+    ? $(".add-new").removeAttribute("hidden")
+    : $(".add-new").setAttribute("hidden", true);
+}
+$("#add-new-book-button").addEventListener("click", newBookButtonHandler);
