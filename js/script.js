@@ -1,7 +1,7 @@
 let myLibrary = [];
 
 const $ = document.querySelector.bind(document);
-const $$ = Array.from(document.querySelectorAll.bind(document));
+const $$ = document.querySelectorAll.bind(document);
 
 function Book(id, title, author, pages, isCompleted) {
   this.id = id;
@@ -42,6 +42,10 @@ function createCell(attributeName, value) {
     button.classList.add("delete-book");
     button.setAttribute("data-id", value);
     button.textContent = "X";
+    button.addEventListener("click", () => {
+      myLibrary.splice(myLibrary.indexOf(book => book.id), 1);
+      render();
+    });
     cell.appendChild(button);
   } else {
     cell.classList.add(attributeName);
@@ -82,8 +86,6 @@ function persistBookButtonHandler() {
   $("input[name='isCompleted']").checked = false;
 }
 $("#persist-new-book").addEventListener("click", persistBookButtonHandler);
-
-function deleteBookButtonHandler() {}
 
 let idCounter = 3;
 
