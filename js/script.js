@@ -31,9 +31,13 @@ function newBookButtonHandler() {
     const element = atributesNodeList[i];
     atributesArray.push(element.nodeName);
   }
-  atributesArray.includes("hidden")
-    ? $(".add-new").removeAttribute("hidden")
-    : $(".add-new").setAttribute("hidden", true);
+  if (atributesArray.includes("hidden")) {
+    $(".add-new").removeAttribute("hidden");
+    $("#add-new-book-button").textContent = "hide";
+  } else {
+    $(".add-new").setAttribute("hidden", true);
+    $("#add-new-book-button").textContent = "add new";
+  }
   $(".new-id").textContent = idCounter;
   $("input[name='title']").focus();
 }
