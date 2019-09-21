@@ -77,13 +77,16 @@ function createCell(attributeName, value) {
   let cell = document.createElement("td");
   if (attributeName === "delete") {
     button = document.createElement("button");
-    button.classList.add("delete-book");
     button.setAttribute("data-id", value);
-    button.textContent = "X";
+    let icon = document.createElement("i");
+    icon.classList.add("fas");
+    icon.classList.add("fa-minus-square");
+    button.appendChild(icon);
     button.addEventListener("click", () => {
       myLibrary.splice(myLibrary.indexOf(book => book.id), 1);
       render();
     });
+    cell.classList.add("delete-book");
     cell.appendChild(button);
   } else if (attributeName === "completed") {
     label = document.createElement("label");

@@ -4,53 +4,83 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Merriweather|Raleway:400,700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/2beb581c15.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Library - Made by Esteban Moroy</title>
   </head>
   <body>
-    <h1>Library</h1>
-    <button id="add-new-book-button">Add New</button>
-    <table>
-      <thead>
-        <th>#</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Pages</th>
-        <th>Completed?</th>
-      </thead>
-      <tbody class="add-new" hidden>
-        <tr>
-          <td class="new-id"></td>
-          <td>
-            <input type="text" name="title" />
-          </td>
-          <td>
-            <input type="text" name="author" />
-          </td>
-          <td>
-            <input type="number" name="pages" />
-          </td>
-          <td>
-            <input type="checkbox" name="isCompleted" value="true" />
-          </td>
-          <td><button id="persist-new-book">+</button></td>
-        </tr>
-      </tbody>
-      <tbody class="book-list">
-        <tr>
-          <td class="id">1</td>
-          <td class="title" contenteditable="true">Foo</td>
-          <td class="author" contenteditable="true">Bar</td>
-          <td class="pages" contenteditable="true">123</td>
-          <td class="completed">
-            <label class="switch">
-              <input type="checkbox" class="toggle" />
-              <span class="slider"></span>
-            </label>
-          </td>
-          <td><button class="delete-book">X</button></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="wrapper">
+      <h1>Library</h1>
+      <button id="add-new-book-button" class="btn-gradient">Add New</button>
+      <table>
+        <thead>
+          <th>#</th>
+          <th class="th-align-left">Title</th>
+          <th class="th-align-left">Author</th>
+          <th>Pages</th>
+          <th>Completed</th>
+          <th></th>
+        </thead>
+        <tbody class="add-new" hidden>
+          <tr class="row-add-new">
+            <td class="new-id"></td>
+            <td class="title">
+              <input type="text" name="title" />
+            </td>
+            <td class="author">
+              <input type="text" name="author" />
+            </td>
+            <td class="pages">
+              <input type="number" name="pages" />
+            </td>
+            <td class="completed">
+              <label class="switch">
+                <input
+                  class="toggle"
+                  type="checkbox"
+                  name="isCompleted"
+                  value="true"
+                />
+                <span class="slider"></span>
+              </label>
+            </td>
+            <td class="persist-new-book"
+              ><button id="persist-new-book"
+                ><i class="fas fa-plus-square"></i></button
+            ></td>
+          </tr>
+        </tbody>
+        <tbody class="book-list">
+          <tr>
+            <td class="id">1</td>
+            <td class="title" contenteditable="true">Foo</td>
+            <td class="author" contenteditable="true">Bar</td>
+            <td class="pages" contenteditable="true">123</td>
+            <td class="completed">
+              <label class="switch">
+                <input type="checkbox" class="toggle" />
+                <span class="slider"></span>
+              </label>
+            </td>
+            <td class="delete-book"><button id="delete-book">X</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <footer>
+      <p>
+        Library app - Made by Esteban Moroy
+        <a href="https://github.com/estebanmoroy">
+          <i class="fab fa-github"></i>
+        </a>
+      </p>
+    </footer>
   </body>
   <script src="js/script.js"></script>
 </html>
